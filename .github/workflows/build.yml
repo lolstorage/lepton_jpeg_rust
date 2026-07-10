@@ -37,7 +37,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: lepton-rust-${{ matrix.os }}
-        path: |
-          target/release/lepton*
-          target/release/*.exe
-        if-no-files-found: error
+        path: target/release/lepton_jpeg*
+        if-no-files-found: warn
