@@ -38,6 +38,6 @@ jobs:
       with:
         name: lepton-rust-${{ matrix.os }}
         path: |
-          target/release/lepton_jpeg_util
-          target/release/lepton_jpeg_util.exe
-        if-no-files-found: ignore
+          target/release/lepton*
+          target/release/*.exe
+        if-no-files-found: error
