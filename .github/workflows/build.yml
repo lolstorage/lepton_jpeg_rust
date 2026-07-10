@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest] # Trimmed down to just Windows to make it lightning fast for you
+        os: [windows-latest]
 
     steps:
     - name: Checkout repository
@@ -31,5 +31,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: lepton-rust-windows
-        path: target/release/
+        path: "**/release/*.exe"
         if-no-files-found: error
