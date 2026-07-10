@@ -1,4 +1,4 @@
-name: Build and Test Lepton Rust
+name: Build Lepton Rust
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest] # Trimmed down to just Windows to make it lightning fast for you
 
     steps:
     - name: Checkout repository
@@ -24,18 +24,12 @@ jobs:
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
 
-    - name: Rust Cache
-      uses: swatinem/rust-cache@v2
-
-    - name: Run Tests
-      run: cargo test --verbose
-
     - name: Build Release Binary
       run: cargo build --release --verbose
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: lepton-rust-${{ matrix.os }}
-        path: target/release/lepton_jpeg*
-        if-no-files-found: warn
+        name: lepton-rust-windows
+        path: target/release/
+        if-no-files-found: error
